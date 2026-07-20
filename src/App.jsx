@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import SubjectPage from './pages/SubjectPage';
 import TopicPage from './pages/TopicPage';
+import About from './pages/About';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/hakkimizda" element={<About />} />
             <Route path="/ders/:subjectId" element={<SubjectPage />} />
             <Route path="/konu/:topicId" element={<TopicPage />} />
           </Routes>
