@@ -1,0 +1,18 @@
+{
+  "name": "KPSS Lisans - Konu Anlatım Platformu",
+  "short_name": "KPSS Lisans",
+  "description": "KPSS Lisans Genel Yetenek ve Genel Kültür dersleri için özenle hazırlanmış konu anlatımları.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0f19",
+  "theme_color": "#8b5cf6",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
