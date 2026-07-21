@@ -24,8 +24,26 @@
      sorununa karşı import yapısını doğrudan component içine taşı.
    - Doğrulama geçmeden asla deploy yapma!
 
+## Vite 8 Tree-Shaking Sorunu ve public/JSON Çözümü (KRİTİK)
+7. **Vite 8 (Rolldown) dinamik property erişiminde agresif tree-shaking yapar:**
+   - `topicContents[dynamicId]` gibi dinamik erişimler kullanıldığında Vite, objenin
+     hangi key'lerinin kullanıldığını statik analiz edemez ve tüm objeyi bundle'dan siler.
+   - **Belirti:** Build hash hiç değişmez (örn. `index-CWbAT23E.js`), içerik bulunamaz.
+   - **Kök Neden:** Vite 8 build hash'ini modül grafiğine göre üretir, dosya içeriğine göre değil.
+     Dolayısıyla kaynak dosya değişse bile hash sabit kalır — cache bypass edemezsiniz.
+   - **Kalıcı Çözüm:** Büyük/dinamik erişilen veri objelerini `public/<dosya>.json` olarak kaydet
+     ve component içinden `fetch()` ile yükle. Vite `public/` klasörüne hiç dokunmaz:
+     ```js
+     // public/matData.json → node ile üret, Vite build'den bağımsız
+     fetch('/matData.json').then(r => r.json()).then(data => setContent(data[id]));
+     ```
+   - **JSON Oluşturma:** ES module dosyalarından JSON üretmek için:
+     ```bash
+     node --input-type=module -e "import {data} from './src/data/file.js'; import fs from 'fs'; fs.writeFileSync('public/data.json', JSON.stringify(data));"
+     ```
+
 ## Geliştirilmiş GitHub Pages Deploy Kontrol Adımları
-7. **Deploy sonrası HTML hash doğrulaması:**
+8. **Deploy sonrası HTML hash doğrulaması:**
    - Deploy tamamlandıktan sonra canlı URL'den HTML'i çek ve `<script src=...>` hash'inin
      yeni build hash'i ile eşleşip eşleşmediğini doğrula:
      ```powershell
@@ -33,3 +51,7 @@
      ```
    - Eski hash görünüyorsa `npx gh-pages -d dist --no-history` ile gh-pages branch'ini sıfırla.
    - Doğrulama adımını her deploy sonrası tekrarla; CDN cache sebebiyle gecikme olabilir.
+   - **JSON dosyaları için doğrulama:**
+     ```powershell
+     (Invoke-WebRequest -Uri https://SITE_URL/data.json -UseBasicParsing).Content | ConvertFrom-Json
+     ```
