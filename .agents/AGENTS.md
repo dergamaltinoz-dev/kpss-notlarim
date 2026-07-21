@@ -1,9 +1,10 @@
 # Project Customization Rules & Lessons Learned
 
 ## Vite + React + GitHub Pages Deployment Rules
-1. **Root `index.html` Blank Screen Prevention**:
-   - Default Vite `index.html` references `/src/main.jsx`, which cannot be executed by browsers without a running Vite dev server.
-   - When deploying to GitHub Pages, ALWAYS build the production bundle (`npm run build`) and ensure compiled assets (`dist/index.html` and `dist/assets/`) are deployed or copied to the target branch/root directory.
+1. **Root `index.html` Integrity (KRİTİK)**:
+   - Kök `index.html` dosyası HER ZAMAN `<script type="module" src="/src/main.jsx"></script>` içermelidir.
+   - Kök `index.html` dosyasını ASLA `dist/assets/index-xxx.js` gibi derlenmiş dosyalara yönlendirmeyin.
+   - Derlenmiş asset'leri (`assets/` klasörünü) projenin kök dizinine kopyalamayın; aksi takdirde Vite kaynak kodlar yerine eski derlenmiş asset'leri paketler.
 2. **Custom Domain `public/CNAME`**:
    - Always place a `CNAME` file in the `public/` directory containing the exact domain (e.g., `kpssnotlarim.me`). Vite will automatically copy it to `dist/CNAME` during build.
 3. **GitHub Actions Workflow**:
@@ -13,16 +14,11 @@
 5. **Navbar Links**:
    - Ensure all `Navbar` links point to valid routes (e.g. `<Link to="/hakkimizda">` instead of `to="/"`).
 
-## Vite Bundle İçerik Doğrulama Kuralı (KRİTİK)
+## Vite Bundle İçerik Doğrulama Kuralı
 6. **Yeni data dosyası ekledikten sonra deploy öncesi bundle doğrulaması zorunludur:**
-   - `npm run build` sonrası, `git push` ve `gh-pages` deploy YAPILMADAN ÖNCE:
-     ```bash
-     node -e "const fs=require('fs'); const b=fs.readFileSync('dist/assets/<bundle>.js','utf8'); console.log('İçerik var mı:', b.includes('ARANAN_ANAHTAR_KELIME'));"
-     ```
-   - Eğer içerik bulunamazsa: import'ların doğruluğunu kontrol et, `vite.config.js`'de
-     `build.rollupOptions` ile ilgili dosyaları zorla dahil etmeyi dene veya tree-shaking
-     sorununa karşı import yapısını doğrudan component içine taşı.
-   - Doğrulama geçmeden asla deploy yapma!
+   - `npm run build` sonrası, `git push` yapmadan önce `dist/assets/index-*.js` bundle'ını doğrulayın.
+   - Kök `index.html` dosyasının `/src/main.jsx` işaret ettiğinden emin olun.
+
 
 ## Vite 8 Tree-Shaking Sorunu ve public/JSON Çözümü (KRİTİK)
 7. **Vite 8 (Rolldown) dinamik property erişiminde agresif tree-shaking yapar:**
