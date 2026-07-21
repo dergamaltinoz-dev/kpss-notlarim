@@ -2,10 +2,13 @@
 import { turkceTopicContents } from './turkceData1';
 import { turkceTopicContents2 } from './turkceData2';
 import { turkceTopicContents3 } from './turkceData3';
+import { matTopicContents1 } from './matData1';
+import { matTopicContents2 } from './matData2';
+import { matTopicContents3 } from './matData3';
 
 export const subjects = [
   { id: 'turkce', title: 'Türkçe', category: 'Genel Yetenek', icon: 'BookOpen', description: 'Sözcükte Anlam, Cümlede Anlam, Paragraf, Ses Bilgisi, Yapı Bilgisi, Sözcük Türleri, Cümle Bilgisi, Dil Bilgisi, Noktalama İşaretleri, Yazım Kuralları, Anlatım Bozukluğu ve Sözel Mantık.' },
-  { id: 'matematik', title: 'Matematik', category: 'Genel Yetenek', icon: 'Calculator', description: 'Temel Kavramlar, Sayılar, Problemler, Geometri.' },
+  { id: 'matematik', title: 'Matematik', category: 'Genel Yetenek', icon: 'Calculator', description: 'Temel Kavramlar, Sayı Basamakları, Asal Sayılar, Faktöriyel, Bölme-Bölünebilme, EBOB-EKOK, Rasyonel Sayılar, Denklemler, Eşitsizlikler, Mutlak Değer, Üslü-Köklü Sayılar, Özdeşlikler, Oran-Orantı, Problemler, Kümeler, Permütasyon, Kombinasyon-Olasılık ve Sayısal Mantık.' },
   { id: 'tarih', title: 'Tarih', category: 'Genel Kültür', icon: 'Landmark', description: 'İslamiyet Öncesi, Osmanlı, İnkılap Tarihi.' },
   { id: 'cografya', title: 'Coğrafya', category: 'Genel Kültür', icon: 'Map', description: 'Türkiye\'nin Fiziki, Beşeri ve Ekonomik Coğrafyası.' },
   { id: 'vatandaslik', title: 'Vatandaşlık', category: 'Genel Kültür', icon: 'Scale', description: 'Temel Hukuk, Anayasa, İdare Hukuku.' }
@@ -28,7 +31,31 @@ export const topics = {
     { id: 'tur_sozel_mantik', title: 'Sözel Mantık' }
   ],
   matematik: [
-    { id: 'mat_1', title: 'Temel Kavramlar' }
+    { id: 'mat_temel', title: 'Temel Kavramlar' },
+    { id: 'mat_basamak', title: 'Sayı Basamakları ve Çözümleme' },
+    { id: 'mat_asal', title: 'Asal Sayılar ve Tam Bölenler' },
+    { id: 'mat_faktoriyel', title: 'Faktöriyel' },
+    { id: 'mat_bolme', title: 'Bölme ve Bölünebilme Kuralları' },
+    { id: 'mat_ebok_ekok', title: 'EBOB ve EKOK' },
+    { id: 'mat_rasyonel', title: 'Rasyonel Sayılar' },
+    { id: 'mat_denklem', title: '1. Dereceden Denklemler' },
+    { id: 'mat_esitsizlik', title: '1. Dereceden Eşitsizlikler' },
+    { id: 'mat_mutlak', title: 'Mutlak Değer' },
+    { id: 'mat_uslu', title: 'Üslü Sayılar' },
+    { id: 'mat_koklu', title: 'Köklü Sayılar' },
+    { id: 'mat_ozdeslik', title: 'Özdeşlikler ve Çarpanlara Ayırma' },
+    { id: 'mat_oran', title: 'Oran ve Orantı' },
+    { id: 'mat_problem', title: 'Denklem Kurma Problemleri' },
+    { id: 'mat_yas', title: 'Yaş Problemleri' },
+    { id: 'mat_yuzde', title: 'Yüzde, Kâr ve Zarar Problemleri' },
+    { id: 'mat_isci', title: 'İşçi Problemleri' },
+    { id: 'mat_hareket', title: 'Hareket Problemleri' },
+    { id: 'mat_kumeler', title: 'Kümeler' },
+    { id: 'mat_modul', title: 'İşlem ve Modüler Aritmetik' },
+    { id: 'mat_permutasyon', title: 'Permütasyon' },
+    { id: 'mat_kombinasyon', title: 'Kombinasyon ve Olasılık' },
+    { id: 'mat_tablo', title: 'Tablo ve Grafik Yorumlama' },
+    { id: 'mat_sayisal_mantik', title: 'Sayısal Mantık' }
   ],
   tarih: [
     { id: 'tar_1', title: 'İslamiyet Öncesi Türk Tarihi' },
@@ -49,43 +76,11 @@ export const topicContents = {
   ...turkceTopicContents2,
   ...turkceTopicContents3,
 
-  // MATEMATİK
-  mat_1: {
-    title: 'Temel Kavramlar',
-    subjectId: 'matematik',
-    subjectTitle: 'Matematik',
-    content: `
-      <h2>Sayı Kümeleri</h2>
-      <ul>
-        <li><strong>Rakam:</strong> Sayıları ifade etmeye yarayan sembollerdir. {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}. Toplam 10 tanedir.</li>
-        <li><strong>Doğal Sayılar (N):</strong> {0, 1, 2, 3, ...} kümesidir. "0" bir doğal sayıdır. Sayma sayıları (N+) ise 1'den başlar.</li>
-        <li><strong>Tam Sayılar (Z):</strong> {..., -3, -2, -1, 0, 1, 2, 3, ...} kümesidir. "0"ın işareti yoktur (nötrdür).</li>
-      </ul>
+  // Matematik konuları
+  ...matTopicContents1,
+  ...matTopicContents2,
+  ...matTopicContents3,
 
-      <h2>Tek ve Çift Sayılar</h2>
-      <p>2 ile tam bölünebilen tam sayılara çift, bölünemeyenlere tek sayı denir.</p>
-      <ul>
-        <li>Tek ± Tek = Çift</li>
-        <li>Tek x Tek = Tek (Çarpanların hepsi tekse sonuç tektir.)</li>
-        <li>İçinde en az bir Çift sayı olan çarpımın sonucu her zaman Çifttir.</li>
-      </ul>
-
-      <div class="alert-box">
-        <strong>🎯 KPSS Püf Noktası: Üslü Tek/Çift Soruları</strong>
-        n pozitif bir tam sayı (n > 0) olmak üzere: (Tek)<sup>n</sup> = Tek, (Çift)<sup>n</sup> = Çifttir. Ancak "Daima doğrudur" sorularında <strong>n'nin tam sayı olduğu belirtiliyorsa</strong> n=0 (Herhangi bir sayının 0. kuvveti 1'dir, tektir) veya n < 0 (kesirli çıkar, tekliği/çiftliği aranmaz) durumlarına çok dikkat edin! ÖSYM bu tuzağı çok sever.
-      </div>
-      
-      <h2>Asal Sayılar ve Aralarında Asallık</h2>
-      <div class="alert-box">
-        <strong>⚠️ Önemli Kurallar</strong>
-        <ul>
-          <li><strong>En küçük asal sayı 2'dir.</strong> 1 asal sayı değildir.</li>
-          <li><strong>2'den başka çift asal sayı yoktur.</strong></li>
-          <li>Aralarında asallıkta sayıların kendilerinin asal olması gerekmez. Sadece ortak bölenleri 1 olmalıdır (Örn: 8 ve 15). 1 sayısı tüm pozitif tam sayılarla aralarında asaldır.</li>
-        </ul>
-      </div>
-    `
-  },
 
   // TARİH
   tar_1: {
