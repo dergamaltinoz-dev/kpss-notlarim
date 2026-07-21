@@ -1,16 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { topicContents } from '../data/mockData';
 import { ArrowLeft } from 'lucide-react';
 
 const TopicPage = () => {
   const { topicId } = useParams();
-  const contentData = topicContents[topicId];
+  const [contentData, setContentData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Önce statik veriye bak (Türkçe, Tarih, Coğrafya, Vatandaşlık)
+    if (topicContents[topicId]) {
+      setContentData(topicContents[topicId]);
+      setLoading(false);
+    } else if (topicId && topicId.startsWith('mat_')) {
+      // Matematik konuları için JSON'dan yükle (Vite build cache bypass)
+      fetch('/matData.json')
+        .then(r => r.json())
+        .then(data => {
+          setContentData(data[topicId] || null);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
   }, [topicId]);
 
+  if (loading) return <div style={{ textAlign: 'center', marginTop: '5rem' }}>Yükleniyor...</div>;
   if (!contentData) return <div style={{ textAlign: 'center', marginTop: '5rem' }}>Konu içeriği bulunamadı veya henüz hazırlanmadı.</div>;
 
   return (
