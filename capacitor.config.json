@@ -1,5 +1,5 @@
 {
-  "appId": "me.kpssnotlarim.app",
-  "appName": "KPSS Lisans",
+  "appId": "com.ioridev.kpssnotlarim",
+  "appName": "KPSS Notlarım",
   "webDir": "dist"
 }

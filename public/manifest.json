@@ -1,7 +1,7 @@
 {
-  "name": "KPSS Lisans - Konu Anlatım Platformu",
-  "short_name": "KPSS Lisans",
-  "description": "KPSS Lisans Genel Yetenek ve Genel Kültür dersleri için özenle hazırlanmış konu anlatımları.",
+  "name": "KPSS Notlarım",
+  "short_name": "KPSS Notlarım",
+  "description": "KPSS Lisans Genel Yetenek ve Genel Kültür dersleri için özenle hazırlanmış konu anlatım platformu.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0b0f19",

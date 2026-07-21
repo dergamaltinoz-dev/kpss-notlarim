@@ -1,4 +1,4 @@
-package me.kpssnotlarim.app;
+package com.ioridev.kpssnotlarim;
 
 import com.getcapacitor.BridgeActivity;
 
