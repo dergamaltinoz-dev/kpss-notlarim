@@ -44,8 +44,8 @@ const TopicPage = () => {
         <ArrowLeft size={20} /> Konulara Dön
       </Link>
 
-      <div className="glass-panel" style={{ padding: '3rem', marginTop: '1rem' }}>
-        <div className="content-header" style={{ marginBottom: '2rem', paddingBottom: '1rem' }}>
+      <div className="glass-panel topic-card-container">
+        <div className="content-header" style={{ marginBottom: '1.5rem', paddingBottom: '1rem' }}>
           <h1>{contentData.title}</h1>
         </div>
         
