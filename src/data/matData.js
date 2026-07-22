@@ -1,7 +1,4 @@
-export const matTopicContents = {
-  ...(// matData1.js - Matematik Konu İçerikleri (1/3)
-// Konular: Temel Kavramlar, Sayı Basamakları, Asal Sayılar, Faktöriyel, Bölme-Bölünebilme, EBOB-EKOK, Rasyonel Sayılar, 1.Derece Denklem, 1.Derece Eşitsizlik
-
+// matData.js - Matematik Konu İçerikleri
 export const matTopicContents1 = {
 
   mat_temel: {
