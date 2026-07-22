@@ -1,54 +1,42 @@
-const CACHE_NAME = 'kpss-lisans-v3';
-const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/favicon.svg',
-  '/matData.json'
-];
+// Service Worker for cache cleanup and offline readiness
 
-// Install event
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
-    }).then(() => self.skipWaiting())
-  );
+  self.skipWaiting();
 });
 
-// Activate event
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
+    caches.keys().then((keys) => {
       return Promise.all(
-        cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
-            return caches.delete(cache);
-          }
-        })
+        keys.map((key) => caches.delete(key))
       );
     }).then(() => self.clients.claim())
   );
 });
 
-// Fetch event (Network first, fallback to cache)
+// Network-first fetch strategy with safe fallback
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  
+  // For HTML document navigation, always fetch fresh from network
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match(event.request))
+    );
+    return;
+  }
   
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        // Clone and store in cache
-        if (response.status === 200) {
+        if (response && response.status === 200 && response.type === 'basic') {
           const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
+          caches.open('kpss-v4').then((cache) => {
             cache.put(event.request, responseClone);
           });
         }
         return response;
       })
-      .catch(() => {
-        return caches.match(event.request);
-      })
+      .catch(() => caches.match(event.request))
   );
 });
