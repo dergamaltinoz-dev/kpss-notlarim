@@ -5,10 +5,12 @@ import { turkceTopicContents3 } from './turkceData3';
 import { matTopicContents1 } from './matData1';
 import { matTopicContents2 } from './matData2';
 import { matTopicContents3 } from './matData3';
+import { geoTopicContents } from './geoData';
 
 export const subjects = [
   { id: 'turkce', title: 'Türkçe', category: 'Genel Yetenek', icon: 'BookOpen', description: 'Sözcükte Anlam, Cümlede Anlam, Paragraf, Ses Bilgisi, Yapı Bilgisi, Sözcük Türleri, Cümle Bilgisi, Dil Bilgisi, Noktalama İşaretleri, Yazım Kuralları, Anlatım Bozukluğu ve Sözel Mantık.' },
   { id: 'matematik', title: 'Matematik', category: 'Genel Yetenek', icon: 'Calculator', description: 'Temel Kavramlar, Sayı Basamakları, Asal Sayılar, Faktöriyel, Bölme-Bölünebilme, EBOB-EKOK, Rasyonel Sayılar, Denklemler, Eşitsizlikler, Mutlak Değer, Üslü-Köklü Sayılar, Özdeşlikler, Oran-Orantı, Problemler, Kümeler, Permütasyon, Kombinasyon-Olasılık ve Sayısal Mantık.' },
+  { id: 'geometri', title: 'Geometri', category: 'Genel Yetenek', icon: 'Shapes', description: 'Doğruda ve Üçgende Açı, Dik Üçgen, Özel Üçgenler, Açıortay-Kenarortay, Üçgende Alan, Benzerlik, Çokgenler, Dörtgenler, Çember-Daire, Analitik Geometri ve Katı Cisimler.' },
   { id: 'tarih', title: 'Tarih', category: 'Genel Kültür', icon: 'Landmark', description: 'İslamiyet Öncesi, Osmanlı, İnkılap Tarihi.' },
   { id: 'cografya', title: 'Coğrafya', category: 'Genel Kültür', icon: 'Map', description: 'Türkiye\'nin Fiziki, Beşeri ve Ekonomik Coğrafyası.' },
   { id: 'vatandaslik', title: 'Vatandaşlık', category: 'Genel Kültür', icon: 'Scale', description: 'Temel Hukuk, Anayasa, İdare Hukuku.' }
@@ -57,6 +59,26 @@ export const topics = {
     { id: 'mat_tablo', title: 'Tablo ve Grafik Yorumlama' },
     { id: 'mat_sayisal_mantik', title: 'Sayısal Mantık' }
   ],
+  geometri: [
+    { id: 'geo_dogruda_aci', title: 'Doğruda Açı' },
+    { id: 'geo_ucgende_aci', title: 'Üçgende Açı' },
+    { id: 'geo_dik_ucgen', title: 'Dik Üçgen' },
+    { id: 'geo_ozel_ucgenler', title: 'Özel Üçgenler' },
+    { id: 'geo_aciortay_kenarortay', title: 'Açıortay - Kenarortay' },
+    { id: 'geo_ucgende_alan', title: 'Üçgende Alan' },
+    { id: 'geo_ucgende_benzerlik', title: 'Üçgende Benzerlik' },
+    { id: 'geo_ucgende_benzerlik_alan', title: 'Üçgende Benzerlik ve Alan' },
+    { id: 'geo_ucgende_aci_kenar', title: 'Üçgende Açı-Kenar Bağıntıları' },
+    { id: 'geo_cokgen_dortgen', title: 'Çokgen - Dörtgen' },
+    { id: 'geo_paralelkenar_eskenar', title: 'Paralelkenar - Eşkenar Dörtgen' },
+    { id: 'geo_dikdortgen_kare', title: 'Dikdörtgen - Kare' },
+    { id: 'geo_yamuk_deltoid', title: 'Yamuk - Deltoid' },
+    { id: 'geo_cemberde_aci', title: 'Çemberde Açı' },
+    { id: 'geo_cemberde_uzunluk', title: 'Çemberde Uzunluk' },
+    { id: 'geo_dairede_alan', title: 'Dairede Alan' },
+    { id: 'geo_analitik_geometri', title: 'Analitik Geometri' },
+    { id: 'geo_kati_cisimler', title: 'Katı Cisimler' }
+  ],
   tarih: [
     { id: 'tar_1', title: 'İslamiyet Öncesi Türk Tarihi' },
     { id: 'tar_2', title: 'Osmanlı Devleti - Kültür ve Medeniyet' }
@@ -71,6 +93,9 @@ export const topics = {
 
 // Tüm konu içeriklerini birleştir
 export const topicContents = {
+  // Geometri konuları
+  ...geoTopicContents,
+
   // Türkçe konuları
   ...turkceTopicContents,
   ...turkceTopicContents2,
