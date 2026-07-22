@@ -246,11 +246,11 @@ ul {
 
 /* Hero Section */
 .hero {
-  text-align: center;
+  text-align: left;
   padding: 3rem 0 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.25rem;
   width: 100%;
 }
@@ -261,6 +261,7 @@ ul {
   max-width: 800px;
   word-break: normal;
   overflow-wrap: break-word;
+  text-align: left;
 }
 
 .hero p {
@@ -268,6 +269,7 @@ ul {
   color: var(--text-secondary);
   max-width: 600px;
   line-height: 1.6;
+  text-align: left;
 }
 
 /* Subject Grid */
@@ -475,7 +477,7 @@ ul {
 
 @media (max-width: 640px) {
   .navbar {
-    padding: 0.75rem 0.85rem;
+    padding: 0.65rem 0.5rem;
   }
 
   .nav-logo {
