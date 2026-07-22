@@ -1,9 +1,0 @@
-{
-  "appId": "com.ioridev.kpssnotlarim",
-  "appName": "KPSS Notlarım",
-  "webDir": "dist",
-  "server": {
-    "url": "https://kpssnotlarim.me",
-    "cleartext": true
-  }
-}
