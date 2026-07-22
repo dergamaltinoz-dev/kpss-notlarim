@@ -1,7 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { subjects } from '../data/mockData';
-import * as Icons from 'lucide-react';
+import { BookOpen, Calculator, Shapes, Landmark, Map, Scale, HelpCircle } from 'lucide-react';
+
+const iconMap = {
+  BookOpen,
+  Calculator,
+  Shapes,
+  Landmark,
+  Map,
+  Scale
+};
 
 const Home = () => {
   const navigate = useNavigate();
@@ -20,7 +29,7 @@ const Home = () => {
         <h2 style={{ marginBottom: '1rem' }}>Genel Yetenek</h2>
         <div className="subject-grid">
           {subjects.filter(s => s.category === 'Genel Yetenek').map(subject => {
-            const Icon = Icons[subject.icon];
+            const Icon = iconMap[subject.icon] || HelpCircle;
             return (
               <div key={subject.id} className="subject-card glass-panel" onClick={() => navigate(`/ders/${subject.id}`)}>
                 <div className="subject-icon">
@@ -38,7 +47,7 @@ const Home = () => {
         <h2 style={{ marginBottom: '1rem' }}>Genel Kültür</h2>
         <div className="subject-grid">
           {subjects.filter(s => s.category === 'Genel Kültür').map(subject => {
-            const Icon = Icons[subject.icon];
+            const Icon = iconMap[subject.icon] || HelpCircle;
             return (
               <div key={subject.id} className="subject-card glass-panel" onClick={() => navigate(`/ders/${subject.id}`)}>
                 <div className="subject-icon">
