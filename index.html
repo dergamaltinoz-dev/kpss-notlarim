@@ -2,22 +2,47 @@
 <html lang="tr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon-HV1kWBx1.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>KPSS Notlarım - Konu Anlatım Platformu</title>
     
     <!-- PWA & Mobile Meta Tags -->
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="./assets/manifest-H0NKhWxd.json" />
     <meta name="theme-color" content="#8b5cf6" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="KPSS Notlarım" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <script type="module" crossorigin src="/assets/index-B7dGsxma.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BQ2zAaFf.css">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon-xEHGkfE5.png" />
+    <script type="module" crossorigin src="./assets/index-DJEacsDT.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BQ2zAaFf.css">
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Auto-recovery script if React fails to mount due to stale browser SW cache -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var rootEl = document.getElementById('root');
+          if (rootEl && rootEl.childElementCount === 0) {
+            console.warn('Empty root detected after load. Purging SW caches...');
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.getRegistrations().then(function(regs) {
+                regs.forEach(function(reg) { reg.unregister(); });
+              });
+            }
+            if ('caches' in window) {
+              caches.keys().then(function(names) {
+                names.forEach(function(name) { caches.delete(name); });
+              });
+            }
+            setTimeout(function() {
+              window.location.reload(true);
+            }, 600);
+          }
+        }, 3000);
+      });
+    </script>
   </body>
 </html>
