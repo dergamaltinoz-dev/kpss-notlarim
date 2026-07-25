@@ -5,22 +5,25 @@ import Home from './pages/Home';
 import SubjectPage from './pages/SubjectPage';
 import TopicPage from './pages/TopicPage';
 import About from './pages/About';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   return (
-    <HashRouter>
-      <div className="app-container">
-        <Navbar />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/hakkimizda" element={<About />} />
-            <Route path="/ders/:subjectId" element={<SubjectPage />} />
-            <Route path="/konu/:topicId" element={<TopicPage />} />
-          </Routes>
-        </main>
-      </div>
-    </HashRouter>
+    <ErrorBoundary>
+      <HashRouter>
+        <div className="app-container">
+          <Navbar />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/hakkimizda" element={<About />} />
+              <Route path="/ders/:subjectId" element={<SubjectPage />} />
+              <Route path="/konu/:topicId" element={<TopicPage />} />
+            </Routes>
+          </main>
+        </div>
+      </HashRouter>
+    </ErrorBoundary>
   );
 }
 

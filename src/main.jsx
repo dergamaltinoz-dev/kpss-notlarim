@@ -9,13 +9,24 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 )
 
-// Register Service Worker for PWA after clearing stale caches
+// Register Service Worker safely for PWA in production
 if ('serviceWorker' in navigator && import.meta.env.PROD) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').then((reg) => {
+    const swUrl = `${import.meta.env.BASE_URL}sw.js`;
+    navigator.serviceWorker.register(swUrl).then((reg) => {
       reg.update();
+      reg.onupdatefound = () => {
+        const installingWorker = reg.installing;
+        if (installingWorker) {
+          installingWorker.onstatechange = () => {
+            if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              console.log('New content is available; please refresh.');
+            }
+          };
+        }
+      };
     }).catch((err) => {
-      console.log('SW registration failed: ', err);
+      console.warn('SW registration failed: ', err);
     });
   });
 }

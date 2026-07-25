@@ -433,9 +433,10 @@ export const matTopicContents1 = {
         "Mutlak değer küçükse = merkez ± yarıçap arası" şeklinde düşünün.
       </div>
     `
-  },
-}),
-  ...(// matData2.js - Matematik Konu İçerikleri (2/3)
+  }
+};
+
+// matData2.js - Matematik Konu İçerikleri (2/3)
 // Konular: Mutlak Değer, Üslü Sayılar, Köklü Sayılar, Özdeşlikler-Çarpanlara Ayırma, Oran-Orantı
 
 export const matTopicContents2 = {
@@ -670,9 +671,10 @@ export const matTopicContents2 = {
         Her iki terim aynı katsayıyla çarpılırsa oran korunur: 3k/5k = 3/5 ✓
       </div>
     `
-  },
-}),
-  ...(// matData3.js - Matematik Konu İçerikleri (3/3)
+  }
+};
+
+// matData3.js - Matematik Konu İçerikleri (3/3)
 // Konular: Problem Kurma, Yaş, Yüzde-Kar-Zarar, İşçi, Hareket, Kümeler, Modüler Aritmetik, Permütasyon, Kombinasyon-Olasılık, Tablo-Grafik, Sayısal Mantık
 
 export const matTopicContents3 = {
@@ -890,7 +892,7 @@ export const matTopicContents3 = {
       <ul>
         <li><strong>Birleşim (A ∪ B):</strong> A veya B'de olan elemanların tümü.</li>
         <li><strong>Kesişim (A ∩ B):</strong> Hem A'da hem B'de olan elemanlar.</li>
-        <li><strong>Fark (A \ B):</strong> A'da olup B'de olmayan elemanlar.</li>
+        <li><strong>Fark (A \\ B):</strong> A'da olup B'de olmayan elemanlar.</li>
         <li><strong>Tümleyen (Aᶜ):</strong> Evrensel kümede A'da olmayan elemanlar.</li>
       </ul>
 
@@ -1127,6 +1129,5 @@ export const matTopicContents3 = {
         <li>Her hücre komşularıyla nasıl ilişkili?</li>
       </ul>
     `
-  },
-})
+  }
 };

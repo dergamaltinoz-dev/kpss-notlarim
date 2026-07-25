@@ -216,7 +216,7 @@ export const matTopicContents3 = {
       <ul>
         <li><strong>Birleşim (A ∪ B):</strong> A veya B'de olan elemanların tümü.</li>
         <li><strong>Kesişim (A ∩ B):</strong> Hem A'da hem B'de olan elemanlar.</li>
-        <li><strong>Fark (A \ B):</strong> A'da olup B'de olmayan elemanlar.</li>
+        <li><strong>Fark (A \\ B):</strong> A'da olup B'de olmayan elemanlar.</li>
         <li><strong>Tümleyen (Aᶜ):</strong> Evrensel kümede A'da olmayan elemanlar.</li>
       </ul>
 
