@@ -1,11 +1,11 @@
 // mockData.js - Ana Veri Dosyası
-import { turkceTopicContents } from './turkceData1';
-import { turkceTopicContents2 } from './turkceData2';
-import { turkceTopicContents3 } from './turkceData3';
-import { matTopicContents1 } from './matData1';
-import { matTopicContents2 } from './matData2';
-import { matTopicContents3 } from './matData3';
-import { geoTopicContents } from './geoData';
+import { turkceTopicContents } from './turkceData1.js';
+import { turkceTopicContents2 } from './turkceData2.js';
+import { turkceTopicContents3 } from './turkceData3.js';
+import { matTopicContents1 } from './matData1.js';
+import { matTopicContents2 } from './matData2.js';
+import { matTopicContents3 } from './matData3.js';
+import { geoTopicContents } from './geoData.js';
 
 export const subjects = [
   { id: 'turkce', title: 'Türkçe', category: 'Genel Yetenek', icon: 'BookOpen', description: 'Sözcükte Anlam, Cümlede Anlam, Paragraf, Ses Bilgisi, Yapı Bilgisi, Sözcük Türleri, Cümle Bilgisi, Dil Bilgisi, Noktalama İşaretleri, Yazım Kuralları, Anlatım Bozukluğu ve Sözel Mantık.' },

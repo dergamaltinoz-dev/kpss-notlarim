@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { subjects } from '../data/mockData';
+import { subjects } from '../data/mockData.js';
 import { BookOpen, Calculator, Shapes, Landmark, Map, Scale, HelpCircle } from 'lucide-react';
 
 const iconMap = {

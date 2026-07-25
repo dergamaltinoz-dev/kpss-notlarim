@@ -1,11 +1,11 @@
 import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import SubjectPage from './pages/SubjectPage';
-import TopicPage from './pages/TopicPage';
-import About from './pages/About';
-import ErrorBoundary from './components/ErrorBoundary';
+import Navbar from './components/Navbar.jsx';
+import Home from './pages/Home.jsx';
+import SubjectPage from './pages/SubjectPage.jsx';
+import TopicPage from './pages/TopicPage.jsx';
+import About from './pages/About.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
 
 function App() {
   return (

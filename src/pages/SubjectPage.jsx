@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { subjects, topics } from '../data/mockData';
+import { subjects, topics } from '../data/mockData.js';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 
 const SubjectPage = () => {

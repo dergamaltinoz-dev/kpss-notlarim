@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { topicContents } from '../data/mockData';
-import { matTopicContents1 } from '../data/matData1';
-import { matTopicContents2 } from '../data/matData2';
-import { matTopicContents3 } from '../data/matData3';
+import { topicContents } from '../data/mockData.js';
+import { matTopicContents1 } from '../data/matData1.js';
+import { matTopicContents2 } from '../data/matData2.js';
+import { matTopicContents3 } from '../data/matData3.js';
 import { ArrowLeft } from 'lucide-react';
 
 const allMatContents = {
