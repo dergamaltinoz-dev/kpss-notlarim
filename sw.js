@@ -1,5 +1,5 @@
-// Service Worker - Auto cache cleanup & Network-first strategy
-const CACHE_NAME = 'kpss-v6';
+// Service Worker - Auto cache cleanup & Network-first fallback
+const CACHE_NAME = 'kpss-v9';
 
 self.addEventListener('install', () => {
   self.skipWaiting();
@@ -18,22 +18,10 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
-  const requestUrl = new URL(event.request.url);
-
-  // For HTML document navigation, always fetch fresh from network
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request, { cache: 'no-cache' })
-        .catch(() => caches.match(event.request) || caches.match('/index.html'))
-    );
-    return;
-  }
-
-  // Network-first for all other requests
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        if (response && response.status === 200 && response.type === 'basic') {
+        if (response && response.status === 200) {
           const responseClone = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseClone);
@@ -41,12 +29,17 @@ self.addEventListener('fetch', (event) => {
         }
         return response;
       })
-      .catch(() => caches.match(event.request))
+      .catch(async () => {
+        const cached = await caches.match(event.request);
+        if (cached) return cached;
+        if (event.request.mode === 'navigate') {
+          const mainIndex = await caches.match('/index.html') || await caches.match('./index.html');
+          if (mainIndex) return mainIndex;
+        }
+        return new Response('Sayfa yuklenemedi. Lutfen yenileyin.', {
+          status: 200,
+          headers: { 'Content-Type': 'text/html; charset=utf-8' }
+        });
+      })
   );
-});
-
-self.addEventListener('message', (event) => {
-  if (event.data === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
 });
