@@ -4,13 +4,21 @@ import { GraduationCap, Sun, Moon, Smartphone } from 'lucide-react';
 
 const Navbar = () => {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('kpss_theme') || 'dark';
+    try {
+      return localStorage.getItem('kpss_theme') || 'dark';
+    } catch (e) {
+      return 'dark';
+    }
   });
   const [deferredPrompt, setDeferredPrompt] = useState(null);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('kpss_theme', theme);
+    try {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('kpss_theme', theme);
+    } catch (e) {
+      console.warn('localStorage access failed:', e);
+    }
   }, [theme]);
 
   useEffect(() => {
@@ -34,7 +42,7 @@ const Navbar = () => {
     if (deferredPrompt) {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
+        if (choiceResult?.outcome === 'accepted') {
           console.log('User accepted the PWA prompt');
         }
         setDeferredPrompt(null);
